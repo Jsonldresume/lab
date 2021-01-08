@@ -5,7 +5,7 @@
 [![Crowdin](https://badges.crowdin.net/reactive-resume/localized.svg)](https://crowdin.com/project/reactive-resume)
 [![GitHub](https://img.shields.io/github/license/AmruthPillai/Reactive-Resume)](https://github.com/AmruthPillai/Reactive-Resume/blob/develop/LICENSE)
 
-### [Go to App](https://rxresu.me/)
+### [Go to App](https://jsonldresume.org/)
 
 ### What is this app all about?
 
