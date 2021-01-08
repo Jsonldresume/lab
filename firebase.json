@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "site": "rxresume",
+      "site": "jsonldresume",
       "public": "public/",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [

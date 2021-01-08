@@ -15,45 +15,46 @@ const Dashboard = ({ user }) => {
   useEffect(() => {
     const resumesRef = 'resumes';
     const socketRef = '/.info/connected';
+    if(firebase){
+      firebase
+        .database()
+        .ref(socketRef)
+        .on('value', (snapshot) => {
+          if (snapshot.val()) {
+            setLoading(false);
+            firebase.database().ref(socketRef).off();
+          }
+        });
 
-    firebase
-      .database()
-      .ref(socketRef)
-      .on('value', (snapshot) => {
-        if (snapshot.val()) {
-          setLoading(false);
-          firebase.database().ref(socketRef).off();
-        }
-      });
+      firebase
+        .database()
+        .ref(resumesRef)
+        .orderByChild('user')
+        .equalTo(user.uid)
+        .on('value', (snapshot) => {
+          if (snapshot.val()) {
+            const resumesArr = [];
+            const data = snapshot.val();
+            Object.keys(data).forEach((key) => resumesArr.push(data[key]));
+            setResumes(resumesArr);
+          }
+        });
 
-    firebase
-      .database()
-      .ref(resumesRef)
-      .orderByChild('user')
-      .equalTo(user.uid)
-      .on('value', (snapshot) => {
-        if (snapshot.val()) {
-          const resumesArr = [];
-          const data = snapshot.val();
-          Object.keys(data).forEach((key) => resumesArr.push(data[key]));
-          setResumes(resumesArr);
-        }
-      });
+      firebase
+        .database()
+        .ref(resumesRef)
+        .orderByChild('user')
+        .equalTo(user.uid)
+        .on('child_removed', (snapshot) => {
+          if (snapshot.val()) {
+            setResumes(resumes.filter((x) => x.id === snapshot.val().id));
+          }
+        });
 
-    firebase
-      .database()
-      .ref(resumesRef)
-      .orderByChild('user')
-      .equalTo(user.uid)
-      .on('child_removed', (snapshot) => {
-        if (snapshot.val()) {
-          setResumes(resumes.filter((x) => x.id === snapshot.val().id));
-        }
-      });
-
-    return () => {
-      firebase.database().ref(resumesRef).off();
-    };
+      return () => {
+        firebase.database().ref(resumesRef).off();
+      };
+    }
   }, [user]);
 
   if (loading) {
@@ -66,7 +67,7 @@ const Dashboard = ({ user }) => {
         <title>
           {t('dashboard.title')} | {t('shared.appName')}
         </title>
-        <link rel="canonical" href="https://rxresu.me/app/dashboard" />
+        <link rel="canonical" href="/app/dashboard" />
       </Helmet>
 
       <TopNavbar />

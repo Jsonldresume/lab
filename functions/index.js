@@ -1,10 +1,11 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const puppeteer = require('puppeteer');
+if(admin){
+  const firebaseStatus = admin.initializeApp();
+}
 
-admin.initializeApp();
-
-const BASE_URL = 'https://rxresu.me/r/';
+const BASE_URL = '/';
 
 function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -28,21 +29,25 @@ exports.deleteUser = functions
     }
 
     return new Promise((resolve) => {
-      const resumesRef = admin.database().ref('resumes');
+      if(admin && firebaseStatus){
+        const resumesRef = admin.database().ref('resumes');
 
-      resumesRef.once('value', async (snapshot) => {
-        const data = snapshot.val();
+        resumesRef.once('value', async (snapshot) => {
+          const data = snapshot.val();
 
-        const resumes = Object.keys(data).filter(
-          (x) => data[x].user === auth.uid,
-        );
+          const resumes = Object.keys(data).filter(
+            (x) => data[x].user === auth.uid,
+          );
 
-        await asyncForEach(resumes, async (id) => {
-          await admin.database().ref(`resumes/${id}`).remove();
+          await asyncForEach(resumes, async (id) => {
+            await admin.database().ref(`resumes/${id}`).remove();
+          });
+
+          resolve();
         });
-
+      }else{
         resolve();
-      });
+      }
     });
   });
 

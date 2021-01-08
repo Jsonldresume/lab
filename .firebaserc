@@ -1,11 +1,11 @@
 {
   "projects": {
-    "default": "rx-resume"
+    "default": "jsonldresume"
   },
   "targets": {
-    "rx-resume": {
+    "jsonldresume": {
       "hosting": {
-        "rxresume": [
+        "jsonldresume": [
           "public"
         ]
       }

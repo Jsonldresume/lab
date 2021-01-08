@@ -1,7 +1,7 @@
 {
   "name": "reactive-resume",
   "private": true,
-  "description": "A free and open-source resume builder.",
+  "description": "A free and open-source resume builder based on jsonld.",
   "version": "2.0.0",
   "license": "MIT",
   "scripts": {
@@ -76,9 +76,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AmruthPillai/Reactive-Resume"
+    "url": "https://github.com/jsonldresume/lab"
   },
   "bugs": {
-    "url": "https://github.com/AmruthPillai/Reactive-Resume/issues"
+    "url": "https://github.com/jsonldresume/lab/issues"
   }
 }

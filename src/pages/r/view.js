@@ -58,7 +58,7 @@ const ResumeViewer = ({ id }) => {
           <title>
             {resume.name} | {t('shared.appName')}
           </title>
-          <link rel="canonical" href={`https://rxresu.me/r/${id}`} />
+          <link rel="canonical" href={`/${id}`} />
         </Helmet>
 
         <div
