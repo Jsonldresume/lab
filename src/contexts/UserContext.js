@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 import useAuthState from '../hooks/useAuthState';
 
 const defaultUser = {
-  uid: null,
-  email: null,
-  displayName: null,
-  isAnonymous: false,
+  uid: '',
+  email: '',
+  displayName: '',
+  isAnonymous: true,
 };
 
 const defaultState = {
@@ -19,6 +19,7 @@ const defaultState = {
   loginWithGoogle: async () => {},
   loginAnonymously: async () => {},
   deleteAccount: async () => {},
+  nologin: async () => {},
 };
 
 const UserContext = createContext(defaultState);
@@ -72,6 +73,10 @@ const UserProvider = ({ children }) => {
     setUser(null);
     navigate('/');
   };
+  
+  const nologin = () => {
+    setUser(defaultUser);
+  }
 
   const deleteAccount = async () => {
     const { currentUser } = firebase.auth();
@@ -103,6 +108,7 @@ const UserProvider = ({ children }) => {
         loginWithGoogle,
         loginAnonymously,
         deleteAccount,
+        nologin,
       }}
     >
       {children}

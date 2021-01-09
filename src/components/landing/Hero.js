@@ -10,11 +10,13 @@ import Logo from '../shared/Logo';
 const Hero = () => {
   const { t } = useTranslation();
   const { emitter, events } = useContext(ModalContext);
-  const { user, loading } = useContext(UserContext);
+  const { user, loading, nologin } = useContext(UserContext);
 
   const handleLogin = () => emitter.emit(events.AUTH_MODAL);
 
   const handleGotoApp = () => navigate('/app/dashboard');
+  
+  const handleNoLogin = () => {nologin();navigate('/app/dashboard');};
 
   return (
     <div className="flex flex-col md:flex-row items-center">
@@ -39,13 +41,22 @@ const Hero = () => {
               {t('landing.hero.goToApp')}
             </Button>
           ) : (
-            <Button
-              onClick={handleLogin}
-              isLoading={loading}
-              className="mx-auto md:mx-0"
-            >
-              {t('shared.buttons.login')}
-            </Button>
+            <React.Fragment>
+              <Button
+                onClick={handleLogin}
+                isLoading={loading}
+                className="mx-auto md:mx-0"
+              >
+                {t('shared.buttons.login')}
+              </Button>
+              <Button
+                onClick={handleNoLogin}
+                isLoading={loading}
+                className="mx-auto md:mx-0"
+              >
+                {t('landing.hero.goToApp')}
+              </Button>
+            </React.Fragment>
           )}
         </div>
       </div>

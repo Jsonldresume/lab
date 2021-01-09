@@ -24,8 +24,8 @@ const Wrapper = ({ children }) => {
           name="description"
           content="A free and open source resume builder that’s built to make the mundane tasks of creating, updating and sharing your resume as easy as 1, 2, 3."
         />
-        <link rel="canonical" href="https://jsonldresume.org" />
-        <meta property="og:url" content="https://jsonldresume.org" />
+        <link rel="canonical" href="/" />
+        <meta property="og:url" content="/" />
         <meta property="og:type" content="website" />
         <meta
           property="og:description"

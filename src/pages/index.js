@@ -16,7 +16,7 @@ const Home = () => {
     <Wrapper>
       <Helmet>
         <title>{t('shared.appName')}</title>
-        <link rel="canonical" href="https://jsonldresume.org/" />
+        <link rel="canonical" href="/" />
       </Helmet>
 
       <div className="container px-8 xl:px-0 text-center md:text-left mt-24">
