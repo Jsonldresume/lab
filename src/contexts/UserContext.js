@@ -75,6 +75,7 @@ const UserProvider = ({ children }) => {
   };
   
   const nologin = () => {
+    localStorage.setItem('user', JSON.stringify(defaultUser));
     setUser(defaultUser);
   }
 
