@@ -15,8 +15,11 @@ const mapPerson = (jsonRxResume, jsonldresume, person) => {
 	
 	let firstname = _.get(jsonRxResume, 'profile["firstName"]', '');
 	_.set(person, 'givenName[0]["@value"]',firstname);
-	
 	_.set(person, 'givenName[0]["@language"]','en');
+	
+	let lastname = _.get(jsonRxResume, 'profile["lastName"]', '');
+	_.set(person, 'familyName[0]["@value"]',lastname);
+	_.set(person, 'familyName[0]["@language"]','en');
 	
 	
 	
