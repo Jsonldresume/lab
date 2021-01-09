@@ -81,8 +81,8 @@ Want to run your own instance of Reactive Resume? You are very much free to do s
 1. First, clone this project repository
 
 ```
-git clone https://github.com/AmruthPillai/Reactive-Resume.git
-cd Reactive-Resume
+git clone https://github.com/jsonldresume/lab.git
+cd lab
 ```
 
 2. Run npm install to install dependencies for the project
@@ -112,7 +112,7 @@ And that's it! 🎉
 
 I try to do what I can, but if you found the app helpful, or you're in a better position than the others who depend on this project for their first job, please consider donating as little as \$5 to help keep the project alive :)
 
-#### https://www.buymeacoffee.com/AmruthPillai
+#### https://www.buymeacoffee.com/jsonldresume
 
 ![Please buy me a coffee](https://i.imgur.com/x7g6kvF.png)
 
