@@ -10,6 +10,7 @@ const ImportModal = () => {
   const { t } = useTranslation();
   const reactiveResumeFileInputRef = useRef(null);
   const jsonResumeFileInputRef = useRef(null);
+  const jsonldResumeFileInputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -40,6 +41,16 @@ const ImportModal = () => {
     });
     fr.readAsText(event.target.files[0]);
   };
+  
+  const importJsonldResume = (event) => {
+    const fr = new FileReader();
+    fr.addEventListener('load', () => {
+      const payload = JSON.parse(fr.result);
+      dispatch({ type: 'on_import_jsonldresume', payload });
+      setOpen(false);
+    });
+    fr.readAsText(event.target.files[0]);
+  };
 
   return (
     <BaseModal
@@ -47,6 +58,29 @@ const ImportModal = () => {
       state={[open, setOpen]}
       title={t('builder.actions.import.heading')}
     >
+      <div>
+        <h5 className="text-xl font-semibold mb-4">
+          {t('modals.import.jsonldResume.heading')}
+        </h5>
+
+        <p className="leading-loose">{t('modals.import.jsonldResume.text')}</p>
+
+        <Button
+          className="mt-5"
+          onClick={() => jsonldResumeFileInputRef.current.click()}
+        >
+          {t('modals.import.button')}
+        </Button>
+        <input
+          ref={jsonldResumeFileInputRef}
+          type="file"
+          className="hidden"
+          onChange={importJsonldResume}
+        />
+      </div>
+
+      <hr className="my-8" />
+      
       <div>
         <h5 className="text-xl font-semibold mb-4">
           {t('modals.import.reactiveResume.heading')}

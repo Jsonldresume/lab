@@ -31,7 +31,10 @@ const Wrapper = ({ children }) => {
           property="og:description"
           content="A free and open source resume builder that’s built to make the mundane tasks of creating, updating and sharing your resume as easy as 1, 2, 3."
         />
-        <meta property="og:image" content="https://jsonldresume.org/wp-content/uploads/2020/12/cropped-logo3.png" />
+        <meta 
+          property="og:image" 
+          content="https://jsonldresume.org/wp-content/uploads/2020/12/cropped-logo3.png" 
+        />
       </Helmet>
 
       {children}

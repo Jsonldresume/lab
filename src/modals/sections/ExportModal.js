@@ -9,6 +9,7 @@ import Button from '../../components/shared/Button';
 import ModalContext from '../../contexts/ModalContext';
 import { useSelector } from '../../contexts/ResumeContext';
 import { b64toBlob } from '../../utils';
+import { rxResumetoJsonld } from '../../jsonld';
 import BaseModal from '../BaseModal';
 
 const ExportModal = () => {
@@ -42,7 +43,7 @@ const ExportModal = () => {
         type: isSinglePDF ? 'single' : 'multi',
       });
       const blob = b64toBlob(data, 'application/pdf');
-      download(blob, `RxResume-${state.id}.pdf`, 'application/pdf');
+      download(blob, `Resume-${state.id}.pdf`, 'application/pdf');
     } catch (error) {
       toast(t('builder.toasts.printError'));
     } finally {
@@ -60,7 +61,21 @@ const ExportModal = () => {
     const data = `data:text/json;charset=utf-8,${encodeURIComponent(
       JSON.stringify(backupObj, null, '\t'),
     )}`;
-    download(data, `RxResume-${state.id}.json`, 'text/json');
+    download(data, `Resume-${state.id}.json`, 'text/json');
+  };
+  
+  const handleExportToJsonld = () => {
+    const backupObj = clone(state);
+    delete backupObj.id;
+    delete backupObj.user;
+    delete backupObj.name;
+    delete backupObj.createdAt;
+    delete backupObj.updatedAt;
+    let jsonld = rxResumetoJsonld(backupObj);
+    let data = `data:text/json;charset=utf-8,${encodeURIComponent(
+      JSON.stringify(jsonld, null, '\t'),
+    )}`;
+    download(data, `Resume-${state.id}.json`, 'text/json');
   };
 
   return (
@@ -69,6 +84,25 @@ const ExportModal = () => {
       state={[open, setOpen]}
       title={t('builder.actions.export.heading')}
     >
+      <div>
+        <h5 className="text-xl font-semibold mb-4">
+          {t('modals.export.jsonldFormat.heading')}
+        </h5>
+
+        <p className="leading-loose">{t('modals.export.jsonldFormat.text')}</p>
+
+        <div className="mt-5">
+          <Button onClick={handleExportToJsonld}>
+            {t('modals.export.jsonldFormat.button')}
+          </Button>
+          <a id="downloadAnchor" className="hidden">
+            {t('modals.export.jsonldFormat.button')}
+          </a>
+        </div>
+      </div>
+      
+      <hr className="my-8" />
+      
       <div>
         <h5 className="text-xl font-semibold mb-4">
           {t('modals.export.printDialog.heading')}

@@ -222,7 +222,11 @@
       },
       "jsonResume": {
         "heading": "Import from JSON Resume",
-        "text": "JSON Resume is an open standard for resume schema structure. If you are one of the many enthusiasts who have their resume ready in this format, all it takes it just one click to get started with Reactive Resume."
+        "text": "JSON Resume is an open standard for resume schema structure. If you are one of the many enthusiasts who have their resume ready in this format, all it takes it just one click to get started."
+      },
+      "jsonldResume": {
+        "heading": "Import from JSON-LD Resume",
+        "text": "JSON-LD Resume is an open standard for resume schema structure based on structured data. If you are one of the many enthusiasts who have their resume ready in this format, all it takes it just one click to get started."
       },
       "linkedIn": {
         "heading": "Import from LinkedIn",
@@ -247,6 +251,11 @@
         "heading": "Export to JSON Format",
         "text": "You can also export your data into JSON format for safe keeping so that you can easily import it back into Reactive Resume whenever you want to edit or generate a resume.",
         "button": "Export JSON"
+      },
+      "jsonldFormat": {
+        "heading": "Export to JSON-LD Format",
+        "text": "You can also export your data into JSON-LD format for safe keeping so that you can easily import it back into the Resume whenever you want to edit or generate a resume or to place it on the resume reposiroty to host your own SEO optimized resume or place it on your current website for better search engine optimization.",
+        "button": "Export JSON-LD"
       }
     }
   }

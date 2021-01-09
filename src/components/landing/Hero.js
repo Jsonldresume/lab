@@ -16,7 +16,10 @@ const Hero = () => {
 
   const handleGotoApp = () => navigate('/app/dashboard');
   
-  const handleNoLogin = () => {nologin();navigate('/app/dashboard');};
+  const handleNoLogin = () => {
+    nologin();
+    navigate('/app/dashboard');
+  };
 
   return (
     <div className="flex flex-col md:flex-row items-center">
