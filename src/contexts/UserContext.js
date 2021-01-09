@@ -4,9 +4,15 @@ import { pick } from 'lodash';
 import React, { createContext, memo, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import useAuthState from '../hooks/useAuthState';
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 const defaultUser = {
-  uid: '',
+  uid: uuidv4(),
   email: '',
   displayName: '',
   isAnonymous: true,
